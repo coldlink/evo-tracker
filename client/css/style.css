@@ -1,0 +1,72 @@
+body {
+  background-color: #333;
+  height: 100vh;
+}
+.wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.wrapper p {
+  font-family: Roboto;
+  font-weight: 200;
+  position: absolute;
+}
+.thin {
+  font-family: Roboto;
+  font-weight: 200;
+}
+.inner-wrapper-top {
+  padding-top: 5px;
+  padding-bottom: 0;
+  padding-right: 20px;
+  padding-left: 0px;
+}
+.inner-wrapper-bottom {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.darken {
+  background-color: rgba(51, 51, 51, 0.5);
+}
+.white-text {
+  color: white
+}
+@-webkit-keyframes blink-it {
+  0% {
+    opacity: 1
+  }
+  50% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+@keyframes blink-it {
+  0% {
+    opacity: 1
+  }
+  50% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+.blink {
+  -webkit-animation: blink-it steps(1) 1s infinite;
+  animation: blink-it steps(1) 1s infinite
+}
