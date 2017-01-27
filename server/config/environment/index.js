@@ -9,7 +9,16 @@ const all = {
 
   port: process.env.PORT || 9000,
 
-  ip: process.env.IP || '0.0.0.0'
+  ip: process.env.IP || '0.0.0.0',
+
+  mongo: {
+    uri: process.env.MONGODB_URI || 'mongodb://localhost/evoTracker',
+    options: {
+      db: {
+        safe: true
+      }
+    }
+  }
 }
 
 module.exports = all

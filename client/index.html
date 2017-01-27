@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="evoApp">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <title>EVO2017 Players' Choice Live Donation Tracker</title>
     <meta name="description" content="Live track the donation amounts for the Evolution Championship Series 2017 Players' Choice game." />
@@ -9,51 +8,58 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-</head>
-
-<body data-ng-controller="MainController as $ctrl">
-  <nav class="navbar navbar-static-top nopadding" style="min-height: 0px;">
+  </head>
+  <body data-ng-controller="MainController as $ctrl">
+    
+    <div class="row nopadding" style="height: 97.5%">
+      <a class="col-sm-4 nopadding" style="height: 33.3%" data-ng-repeat="data in $ctrl.data | orderBy:'-amount'" data-ng-href="{{data.url}}" target="_blank">
+        <div class="wrapper nopadding" data-ng-style="$ctrl.getImage(data.image)">
+          <div class="row inner-wrapper-top darken valign-wrapper nopadding">
+            <div class="col-xs-12">
+              <h4 class="white-text thin flow-text">{{data.game}}</h4>
+            </div>
+          </div>
+          <div class="row inner-wrapper-bottom darken valign-wrapper nopadding" style="width: 100%">
+            <div class="col-xs-12">
+              <h5 class="white-text thin">{{data.amount | currency:"$":0}}
+                <br>
+                {{data.donations_count}} Donations
+                <br>
+                Average Donation: {{data.average | currency:"$":2}}
+                <br>
+                Last Donation: {{data.lastDonation.amount}} - {{data.lastDonation.name}} - {{data.lastDonation.timestamp}}
+                <br data-ng-if="data.lastDonation.comment">
+                <span data-ng-if="data.lastDonation.comment">{{data.lastDonation.comment}}</span>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <nav class="navbar navbar-static-top nopadding" style="min-height: 0px;">
       <div class="nopadding">
         <ul class="nav navbar-nav nopadding">
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">EVO2017 Live Donation Tracker</a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#"> <span class="fa fa-arrow-up"></span> Tiles | Chart <span class="fa fa-arrow-down"></span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right nopadding">
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">EVO2017 Live Donation Tracker</a></li>
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">(Updates Every Minute)</a></li>
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">Last Update - {{$ctrl.lastUpdate | date:"shortTime"}}</a></li>        
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">(Updates: Tiles - 1 Min, Chart - 5 Mins)</a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">Last Tile Update - {{$ctrl.lastUpdate | date:"shortTime"}}</a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">Last Chart Update - {{$ctrl.lastChartUpdate | date:"shortTime"}}</a></li>
           <li><a target="_blank" class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="https://github.com/coldlink/evo-tracker"><span class="fa fa-github"></span></a></li>
           <li><a target="_blank" class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="https://twitter.com/coldlink_"><span class="fa fa-twitter"></span></a></li>
           <li><a target="_blank" class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="https://fgc.mkn.sh"><span class="fa fa-globe"></span></a></li>
         </ul>
-      </div><!--/.nav-collapse -->
-  </nav>
-    <div class="row nopadding" style="height: 97.5%">
-        <a class="col-sm-4 nopadding" style="height: 33.3%" data-ng-repeat="data in $ctrl.data | orderBy:'-amount'" data-ng-href="{{data.url}}" target="_blank">
-            <div class="wrapper nopadding" data-ng-style="$ctrl.getImage(data.image)">
-                <div class="row inner-wrapper-top darken valign-wrapper nopadding">
-                    <div class="col-xs-12">
-                        <h4 class="white-text thin flow-text">{{data.game}}</h4>
-                    </div>
-                </div>
-                <div class="row inner-wrapper-bottom darken valign-wrapper nopadding" style="width: 100%">
-                    <div class="col-xs-12">
-                        <h5 class="white-text thin">{{data.amount | currency:"$":0}}
-                        <br>
-                        {{data.donations_count}} Donations
-                        <br>
-                        Average Donation: {{data.average | currency:"$":2}}
-                        <br>
-                        Last Donation: {{data.lastDonation.amount}} - {{data.lastDonation.name}} - {{data.lastDonation.timestamp}}
-                        <br data-ng-if="data.lastDonation.comment">
-                        <span data-ng-if="data.lastDonation.comment">{{data.lastDonation.comment}}</span>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
+      </div>
+    </nav>
+    
+    <div id="container" style="height: 100vh; min-width: 310px"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="./js/app.js"></script>
-</body>
-
+  </body>
 </html>

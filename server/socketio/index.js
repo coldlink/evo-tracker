@@ -9,6 +9,7 @@ module.exports = function (server) {
     users++
     console.log('User Connect: ', users)
     socket.emit('data', API.getData())
+    socket.emit('initialchartdata', API.getChartData())
     socket.on('disconnect', () => {
       users--
       console.log('User Disconnect: ', users)
@@ -17,5 +18,9 @@ module.exports = function (server) {
 
   setInterval(() => {
     io.emit('data', API.getData())
-  }, 60000)
+  }, 1 * 60 * 1000)
+
+  setInterval(() => {
+    io.emit('chartdata', API.getChartData())
+  }, 1 * 60 * 1000)
 }
