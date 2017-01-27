@@ -113,7 +113,7 @@ let API = function () {
   setInterval(() => {
     console.log('updatedb')
     updatedb()
-  }, 1 * 60 * 1000)
+  }, 5 * 60 * 1000)
 }
 
 API.prototype.getData = function () {
