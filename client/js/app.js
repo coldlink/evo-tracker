@@ -105,6 +105,7 @@ function MainController ($window, $scope) {
 
   socket.on('chartdata', function (data) {
     var newdata = []
+    $ctrl.lastChartUpdate = new Date().getTime()
     data.forEach(function (game) {
       newdata.push([new Date(game.data[game.data.length - 1].time).getTime(), game.data[game.data.length - 1].amount])
     })
@@ -112,6 +113,7 @@ function MainController ($window, $scope) {
       window.$('#container').highcharts().series[i].addPoint(elem, false)
     })
     window.$('#container').highcharts().redraw()
+    $scope.$apply()
   })
 
   function getImage (image) {
