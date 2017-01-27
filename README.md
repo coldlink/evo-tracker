@@ -1,7 +1,7 @@
 # evo-tracker
 Live tracker for the donation amounts for the Evolution Championship Series 2017 Player's Choice game.
 
-https://evo-tracker.mkn.sh
+http://evo-tracker.mkn.sh
 
 Quick Start for dev:
 ```sh
