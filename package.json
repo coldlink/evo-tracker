@@ -1,7 +1,7 @@
 {
   "name": "evo-tracker",
   "version": "0.0.1",
-  "description": "evo donation tracker",
+  "description": "Live track the donation amounts for the Evolution Championship Series 2017 Player's Choice game.",
   "main": "server/index.js",
   "author": "Mahesh Makani",
   "license": "MIT",
