@@ -9,8 +9,8 @@ function MainController ($window, $scope) {
   $ctrl.getImage = getImage
 
   socket.on('data', function (data) {
-    console.log(data)
     $ctrl.data = data
+    $ctrl.lastUpdate = new Date().getTime()
     $scope.$apply()
   })
 

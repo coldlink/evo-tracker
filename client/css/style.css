@@ -1,6 +1,8 @@
 body {
   background-color: #333;
   height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 .wrapper {
   position: relative;
@@ -8,20 +10,21 @@ body {
   width: 100%;
   overflow: hidden;
   background-size: cover;
-  background-position: center center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
 }
 .wrapper p {
-  font-family: Roboto;
-  font-weight: 200;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   position: absolute;
 }
 .thin {
   font-family: Roboto;
-  font-weight: 200;
+  font-weight: 300;
 }
 .inner-wrapper-top {
   padding-top: 5px;
