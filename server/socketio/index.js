@@ -18,7 +18,7 @@ module.exports = function (server) {
 
   setInterval(() => {
     io.emit('data', API.getData())
-  }, 1 * 60 * 1000)
+  }, 2 * 60 * 1000)
 
   setInterval(() => {
     io.emit('chartdata', API.getChartData())

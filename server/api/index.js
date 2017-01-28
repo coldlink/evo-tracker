@@ -19,17 +19,23 @@ let API = function () {
           if (err) {
             return reject(err)
           }
-          let data = JSON.parse(body)
-          resolve({
-            game: data.fundraiser.title.split(':')[1].substring(1),
-            amount: Number(data.fundraiser.balance.replace('$', '').replace(',', '')),
-            donations_count: data.fundraiser.donations_count,
-            average: Number(data.fundraiser.balance.replace('$', '').replace(',', '')) / data.fundraiser.donations_count,
-            image: data.fundraiser.compressed_image_url,
-            id: data.fundraiser.id,
-            url: `https://www.generosity.com${data.fundraiser.url}`,
-            lastDonation: data.fundraiser.donations[0]
-          })
+          try {
+            let data = JSON.parse(body)
+            resolve({
+              game: data.fundraiser.title.split(':')[1].substring(1),
+              amount: Number(data.fundraiser.balance.replace('$', '').replace(',', '')),
+              donations_count: data.fundraiser.donations_count,
+              average: Number(data.fundraiser.balance.replace('$', '').replace(',', '')) / data.fundraiser.donations_count,
+              image: data.fundraiser.compressed_image_url,
+              id: data.fundraiser.id,
+              url: `https://www.generosity.com${data.fundraiser.url}`,
+              lastDonation: data.fundraiser.donations[0]
+            })
+          } catch (err) {
+            console.log(body)
+            console.log(err)
+            setTimeout(() => init(), 1 * 60 * 1000)
+          }
         })
       }))
     })
@@ -107,7 +113,7 @@ let API = function () {
   setInterval(() => {
     console.log('init')
     init()
-  }, 1 * 60 * 1000)
+  }, 2 * 60 * 1000)
 
   // set interval to update db every 5 mins
   setInterval(() => {
