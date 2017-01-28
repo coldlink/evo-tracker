@@ -34,7 +34,7 @@ let API = function () {
           } catch (err) {
             console.log(body)
             console.log(err)
-            setTimeout(() => init(), 1 * 60 * 1000)
+            reject(999)
           }
         })
       }))
@@ -48,6 +48,9 @@ let API = function () {
       })
       .catch((err) => {
         console.log(err)
+        if (err === 999) {
+          setTimeout(() => init(), 1 * 60 * 1000)
+        }
       })
   }
 
