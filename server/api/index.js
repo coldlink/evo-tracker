@@ -89,20 +89,76 @@ let API = function () {
   }
 
   const setDB = () => {
-    let agg = Donation
+    let proms = []
+
+    proms.push(new Promise((resolve, reject) => {
+      let agg = Donation
+        .aggregate([{
+          $group: {
+            _id: '$gameName',
+            data: {
+              $push: {time: '$time', amount: '$amount'}
+            }
+          }
+        }])
+        .exec()
+
+      agg
+        .then(res => {
+          this.chartData = res
+          resolve(true)
+        })
+        .catch(err => reject(err))
+    }))
+
+    // top 2 game difference over time
+    proms.push(new Promise((resolve, reject) => {
+      let agg = Donation
       .aggregate([{
         $group: {
           _id: '$gameName',
           data: {
             $push: {time: '$time', amount: '$amount'}
+          },
+          maxAmount: {
+            $max: '$amount'
           }
         }
+      }, {
+        $sort: {
+          maxAmount: -1
+        }
+      }, {
+        $limit: 2
       }])
-      .exec()
 
-    agg
-      .then(res => {
-        this.chartData = res
+      agg
+        .then(res => {
+          let difference = []
+          for (let i = 0; i < res[0].data.length; i++) {
+            if (res[0].data[i].time.getTime() === res[1].data[i].time.getTime()) {
+              difference.push({
+                time: res[0].data[i].time.getTime(),
+                amount: res[0].data[i].amount - res[1].data[i].amount
+              })
+            }
+          }
+
+          this.chartDiffData = {
+            gamea: res[0]._id,
+            gameb: res[1]._id,
+            difference: _.orderBy(difference, ['time'], ['asc'])
+          }
+          console.log(this.chartDiffData)
+          resolve(true)
+        })
+        .catch(err => reject(err))
+    }))
+
+    Promise
+      .all(proms)
+      .then(values => {
+        console.log('setDB')
       })
       .catch(err => {
         console.log(err)
@@ -132,7 +188,7 @@ API.prototype.getData = function () {
 
 API.prototype.getChartData = function () {
   console.log('getChartData')
-  return this.chartData
+  return {chartData: this.chartData, chartDiffData: this.chartDiffData}
 }
 
 module.exports = new API()

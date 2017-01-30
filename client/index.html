@@ -40,11 +40,11 @@
     <nav class="navbar navbar-static-top nopadding" style="min-height: 0px;">
       <div class="nopadding">
         <ul class="nav navbar-nav nopadding">
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">EVO2017 Live Donation Tracker</a></li>
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#"> <span class="fa fa-arrow-up"></span> Tiles | Chart <span class="fa fa-arrow-down"></span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right nopadding">
-          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">(Updates: Tiles - 2 Min, Chart - 5 Mins)</a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">EVO2017 Live Donation Tracker</a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#"> <span class="fa fa-arrow-up"></span> Tiles | Charts <span class="fa fa-arrow-down"></span></a></li>
+          <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">(Updates: Tiles - 2 Min, Charts - 5 Mins)</a></li>
           <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">Last Tile Update - {{$ctrl.lastUpdate | date:"shortTime"}}</a></li>
           <li><a class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="#">Last Chart Update - {{$ctrl.lastChartUpdate | date:"shortTime"}}</a></li>
           <li><a target="_blank" class="nopadding white-text" style="padding-right: 15px !important; padding-left: 15px !important;" href="https://github.com/coldlink/evo-tracker"><span class="fa fa-github"></span></a></li>
@@ -55,6 +55,7 @@
     </nav>
     
     <div id="container" style="height: 100vh; min-width: 310px"></div>
+    <div id="diffcontainer" style="height: 100vh; min-width: 310px"></div>
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
