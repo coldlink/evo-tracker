@@ -190,9 +190,8 @@ function MainController ($window, $scope) {
     data.chartData.forEach(function (game) {
       newdata.push([new Date(game.data[game.data.length - 1].time).getTime(), game.data[game.data.length - 1].amount])
     })
-    data.chartDiffData.difference.forEach(function (elem) {
-      newdiffdata.push([elem.data[elem.data.length - 1].time, elem.data[elem.data.length - 1].amount])
-    })
+    newdiffdata.push([data.chartDiffData.difference[data.chartDiffData.difference.length - 1].time, data.chartDiffData.difference[data.chartDiffData.difference.length - 1].amount])
+
     newdata.forEach((elem, i) => {
       window.$('#container').highcharts().series[i].addPoint(elem, false)
     })
