@@ -149,7 +149,7 @@ let API = function () {
             gameb: res[1]._id,
             difference: _.orderBy(difference, ['time'], ['asc'])
           }
-          console.log(this.chartDiffData)
+
           resolve(true)
         })
         .catch(err => reject(err))
