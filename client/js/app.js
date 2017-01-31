@@ -1,4 +1,4 @@
-var app = angular.module('evoApp', [])
+var app = angular.module('evoApp', ['timer'])
 
 app.controller('MainController', MainController)
 
