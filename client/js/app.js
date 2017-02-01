@@ -1,4 +1,4 @@
-var app = angular.module('evoApp', [])
+var app = angular.module('evoApp', ['timer'])
 
 app.controller('MainController', MainController)
 
@@ -103,6 +103,9 @@ function MainController ($window, $scope) {
             }
           }
         },
+        legend: {
+          enabled: true
+        },
         tooltip: {
           pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>${point.y}</b>',
           valueDecimals: 0,
@@ -170,6 +173,9 @@ function MainController ($window, $scope) {
               return '$' + this.value
             }
           }
+        },
+        legend: {
+          enabled: true
         },
         tooltip: {
           pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>${point.y}</b>',
