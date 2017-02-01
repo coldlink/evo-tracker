@@ -13,3 +13,5 @@ mongoose.connection.on('error', err => {
 
 // set up worker
 require('./generosity')
+
+console.log('Worker Started')
