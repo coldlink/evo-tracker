@@ -47,14 +47,6 @@ function MainController ($window, $scope) {
         title: {text: 'Total Donations'},
         rangeSelector: {
           buttons: [{
-            count: 1,
-            type: 'hour',
-            text: '1H',
-            dataGrouping: {
-              forced: true,
-              units: [['minute', [5]]]
-            }
-          }, {
             count: 5,
             type: 'hour',
             text: '5H',
@@ -68,7 +60,7 @@ function MainController ($window, $scope) {
             text: '10H',
             dataGrouping: {
               forced: true,
-              units: [['minute', [15]]]
+              units: [['minute', [5]]]
             }
           }, {
             count: 1,
@@ -84,7 +76,15 @@ function MainController ($window, $scope) {
             text: '3D',
             dataGrouping: {
               forced: true,
-              units: [['hour', [1]]]
+              units: [['minute', [5]]]
+            }
+          }, {
+            count: 5,
+            type: 'day',
+            text: '5D',
+            dataGrouping: {
+              forced: true,
+              units: [['minute', [5]]]
             }
           }, {
             type: 'all',
@@ -118,14 +118,6 @@ function MainController ($window, $scope) {
         title: {text: chartdiffdata.name + ' - Difference'},
         rangeSelector: {
           buttons: [{
-            count: 1,
-            type: 'hour',
-            text: '1H',
-            dataGrouping: {
-              forced: true,
-              units: [['minute', [5]]]
-            }
-          }, {
             count: 5,
             type: 'hour',
             text: '5H',
@@ -139,7 +131,7 @@ function MainController ($window, $scope) {
             text: '10H',
             dataGrouping: {
               forced: true,
-              units: [['minute', [15]]]
+              units: [['minute', [5]]]
             }
           }, {
             count: 1,
@@ -155,7 +147,15 @@ function MainController ($window, $scope) {
             text: '3D',
             dataGrouping: {
               forced: true,
-              units: [['hour', [1]]]
+              units: [['minute', [5]]]
+            }
+          }, {
+            count: 5,
+            type: 'day',
+            text: '5D',
+            dataGrouping: {
+              forced: true,
+              units: [['minute', [5]]]
             }
           }, {
             type: 'all',
