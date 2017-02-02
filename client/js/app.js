@@ -68,7 +68,7 @@ function MainController ($window, $scope) {
             text: '1D',
             dataGrouping: {
               forced: true,
-              units: [['hour', [1]]]
+              units: [['minute', [1]]]
             }
           }, {
             count: 3,
@@ -139,7 +139,7 @@ function MainController ($window, $scope) {
             text: '1D',
             dataGrouping: {
               forced: true,
-              units: [['hour', [1]]]
+              units: [['minute', [1]]]
             }
           }, {
             count: 3,
