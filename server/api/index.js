@@ -25,7 +25,7 @@ let API = function () {
           $group: {
             _id: '$gameName',
             data: {
-              $push: {time: '$time', amount: '$amount'}
+              $push: { time: '$time', amount: '$amount' }
             }
           }
         }])
@@ -39,26 +39,29 @@ let API = function () {
         .catch(err => reject(err))
     }))
 
-    // top 2 game difference over time
+    // marvel pokken 2 game difference over time
     proms.push(new Promise((resolve, reject) => {
       let agg = Donation
-      .aggregate([{
-        $group: {
-          _id: '$gameName',
-          data: {
-            $push: {time: '$time', amount: '$amount'}
-          },
-          maxAmount: {
-            $max: '$amount'
+        .aggregate([{
+          $match: {
+            gameId: { $in: [2016214, 2016203] }
           }
-        }
-      }, {
-        $sort: {
-          maxAmount: -1
-        }
-      }, {
-        $limit: 2
-      }])
+        }, {
+          $group: {
+            _id: '$gameName',
+            data: {
+              $push: { time: '$time', amount: '$amount' }
+            },
+            maxAmount: {
+              $max: '$amount'
+            }
+          }
+        }, {
+          $sort: {
+            _id: -1
+          }
+        }])
+        .exec()
 
       agg
         .then(res => {
@@ -71,7 +74,6 @@ let API = function () {
               })
             }
           }
-
           this.chartDiffData = {
             gamea: res[0]._id,
             gameb: res[1]._id,
@@ -95,7 +97,7 @@ let API = function () {
 
   update()
 
-  setTimeout(() => {
+  setInterval(() => {
     update()
   }, 1 * 60 * 1000)
 }
@@ -107,7 +109,7 @@ API.prototype.getData = function () {
 
 API.prototype.getChartData = function () {
   console.log('getChartData')
-  return {chartData: this.chartData, chartDiffData: this.chartDiffData}
+  return { chartData: this.chartData, chartDiffData: this.chartDiffData }
 }
 
 module.exports = new API()
