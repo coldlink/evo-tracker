@@ -13,6 +13,7 @@ let API = function () {
         .findById(Buffer.alloc(12, 1))
         .exec()
         .then(doc => {
+          console.log('current:', doc)                    
           this.data = doc.data
           resolve(true)
         })
@@ -33,6 +34,7 @@ let API = function () {
 
       agg
         .then(res => {
+          console.log('chartData:', res[0].data.length)          
           this.chartData = res
           resolve(true)
         })
@@ -73,7 +75,7 @@ let API = function () {
               })
             }
           }
-
+          console.log(difference.length)
           this.chartDiffData = {
             gamea: res[0]._id,
             gameb: res[1]._id,

@@ -104,7 +104,7 @@ updatedb()
 setInterval(() => {
   console.log('init')
   init()
-}, 2 * 60 * 1000)
+}, 1 * 60 * 1000)
 
 // set interval to update db every 5 mins
 setInterval(() => {
