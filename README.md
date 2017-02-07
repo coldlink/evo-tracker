@@ -8,3 +8,5 @@ Quick Start for dev:
 $ npm install
 $ npm start
 ```
+
+Lastest stable version on "current" branch.
