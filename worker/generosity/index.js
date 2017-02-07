@@ -58,41 +58,46 @@ const init = () => {
 }
 
 const updatedb = () => {
-  let promises = []
-  let currentTime = new Date().getTime()
+  Current
+    .findById(Buffer.alloc(12, 1))
+    .exec()
+    .then(doc => {
+      let promises = []
+      let currentTime = new Date().getTime()
+      _.each(doc.data, data => {
+        promises.push(new Promise((resolve, reject) => {
+            // donation db
+          let donation = new Donation({
+            gameId: data.id,
+            gameName: data.game,
+            amount: data.amount,
+            time: currentTime
+          })
 
-  _.each(this.data, data => {
-    promises.push(new Promise((resolve, reject) => {
-        // donation db
-      let donation = new Donation({
-        gameId: data.id,
-        gameName: data.game,
-        amount: data.amount,
-        time: currentTime
+            // save
+          let save = donation
+            .save()
+
+          save
+            .then(() => resolve(true))
+            .catch(err => reject(err))
+        }))
       })
 
-        // save
-      let save = donation
-          .save()
-
-      save
-          .then(() => resolve(true))
-          .catch(err => reject(err))
-    }))
-  })
-
-  Promise
-      .all(promises)
-      .then(values => {
-        console.log('Donation data updated:', new Date().getTime())
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      Promise
+        .all(promises)
+        .then(values => {
+          console.log('Donation data updated:', new Date().getTime())
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+    .catch(handlerErr)
 }
 
 const handlerErr = err => {
-  console.log(err)
+  console.log('Error', err)
   return setTimeout(() => init(), 1 * 60 * 1000)
 }
 
@@ -111,4 +116,3 @@ setInterval(() => {
   console.log('updatedb')
   updatedb()
 }, 5 * 60 * 1000)
-
