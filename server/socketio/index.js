@@ -16,11 +16,11 @@ module.exports = function (server) {
     })
   })
 
-  setInterval(() => {
-    io.emit('data', API.getData())
-  }, 2 * 60 * 1000)
+  // setInterval(() => {
+  //   io.emit('data', API.getData())
+  // }, 2 * 60 * 1000)
 
-  setInterval(() => {
-    io.emit('chartdata', API.getChartData())
-  }, 5 * 60 * 1000)
+  // setInterval(() => {
+  //   io.emit('chartdata', API.getChartData())
+  // }, 5 * 60 * 1000)
 }
